@@ -24,7 +24,7 @@ const schema = a.schema({
   publishCursor: a.mutation()
     .arguments(cursorType)
     .returns(a.ref('Cursor'))
-    .authorization(allow => [allow.publicApiKey()])
+    .authorization(allow => [allow.authenticated()])
     .handler(a.handler.custom({
       entry: './publishCursor.js',
     })),
@@ -32,21 +32,18 @@ const schema = a.schema({
   subscribeCursor: a.subscription()
     .for(a.ref('publishCursor'))
     .arguments({ roomId: a.string(), myUsername: a.string() })
-    .authorization(allow => [allow.publicApiKey()])
+    .authorization(allow => [allow.authenticated()])
     .handler(a.handler.custom({
       entry: './subscribeCursor.js'
     })),
 
-}).authorization((allow) => [allow.publicApiKey()]);
+}).authorization((allow) => [allow.authenticated()]);
 
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
   schema,
   authorizationModes: {
-    defaultAuthorizationMode: 'apiKey',
-    apiKeyAuthorizationMode: {
-      expiresInDays: 30
-    }
+    defaultAuthorizationMode: 'userPool',
   },
 });
