@@ -27,7 +27,6 @@ export function PictureManager({ roomId }: PictureManagerProps) {
       },
     });
 
-
     return () => {
       roomSub.unsubscribe();
     }
