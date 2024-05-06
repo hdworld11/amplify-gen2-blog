@@ -1,40 +1,35 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import { useState } from 'react'
+import './App.css'
+import { ControlPanel } from './ControlPanel'
+import { CursorPanel } from './CursorPanel'
+import { PictureManager } from './PictureManager'
+import { defaultRoom, generateRandomEmoji } from './utils'
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
+  const [username, setUsername] = useState<string>(generateRandomEmoji())
+  const [currentRoomId, setCurrentRoomId] = useState<string>(defaultRoom.id)
+  
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://next-release-dev.d1ywzrxfkb9wgg.amplifyapp.com/react/start/quickstart/vite-react-app/#step-2-add-delete-to-do-functionality">
-          Review next step of this tutorial.
-        </a>
+    <>
+      <div className='cursor-panel'>
+        <div className='info-panel'>
+          <span>
+            <PictureManager roomId={currentRoomId} />
+            Move cursor around to broadcast cursor position to others in the room.
+            <br />
+            Built with <a href="https://docs.amplify.aws/gen2">AWS Amplify Gen 2</a>.
+          </span>
+        </div>
+        <CursorPanel myUsername={username} currentRoomId={currentRoomId} />
       </div>
-    </main>
-  );
+      <ControlPanel
+        currentRoomId={currentRoomId}
+        username={username}
+        onRoomChange={setCurrentRoomId}
+        onUsernameChange={() => setUsername(generateRandomEmoji())}
+      />
+    </>
+  )
 }
 
-export default App;
+export default App
