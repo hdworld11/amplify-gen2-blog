@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Cursor } from "./Cursor";
-import { throttle } from "throttle-debounce";
 import { generateClient } from "aws-amplify/api";
 import { Schema } from "../amplify/data/resource";
+import { throttle } from "throttle-debounce";
 
 type CursorPanelProps = {
   myUsername: string
