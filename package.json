@@ -1,5 +1,5 @@
 {
-  "name": "amplify-vite-react-template",
+  "name": "gen2-the-demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,23 +19,23 @@
     "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {
-    "@aws-amplify/backend": "^1.0.0",
-    "@aws-amplify/backend-cli": "^1.0.1",
+    "@aws-amplify/backend": "^0.15.0",
+    "@aws-amplify/backend-cli": "^0.15.0",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@types/throttle-debounce": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "aws-cdk": "^2.138.0",
-    "aws-cdk-lib": "^2.138.0",
+    "aws-cdk": "^2.139.0",
+    "aws-cdk-lib": "^2.139.0",
     "constructs": "^10.3.0",
     "esbuild": "^0.20.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "tsx": "^4.7.2",
+    "tsx": "^4.7.3",
     "typescript": "^5.4.5",
-    "vite": "^5.2.0",
-    "@types/throttle-debounce": "^5.0.2"
+    "vite": "^5.2.0"
   }
 }

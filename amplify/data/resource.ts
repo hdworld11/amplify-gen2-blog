@@ -37,6 +37,11 @@ const schema = a.schema({
       entry: './subscribeCursor.js'
     })),
 
+  Haiku: a.customType({
+    content: a.string().required(),
+    roomId: a.id().required()
+  }),
+  
 }).authorization((allow) => [allow.authenticated()]);
 
 export type Schema = ClientSchema<typeof schema>;
