@@ -73,7 +73,8 @@ export function PictureManager({ roomId }: PictureManagerProps) {
             }
 
             const result = await uploadData({
-              path: `room/${roomId}/${file.name}`,
+              // path: `room/${roomId}/${file.name}`,
+              path: ({identityId}) => `room/${identityId}/${roomId}/${file.name}`,
               data: file,
             }).result;
 
