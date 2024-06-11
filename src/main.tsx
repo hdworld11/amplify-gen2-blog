@@ -12,7 +12,13 @@ Amplify.configure(outputs);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Authenticator>
-      <App />
+    {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user?.username}</h1>
+          <button onClick={signOut}>Sign out</button>
+          <App />
+        </main>
+      )}
     </Authenticator>
   </React.StrictMode>,
 )
